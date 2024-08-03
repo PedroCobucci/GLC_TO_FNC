@@ -1,7 +1,9 @@
+Gramatica de exemplo:
+```
 S -> aS | A
 A -> aB | .
 B -> b
-
+```
 
 
 Syntax:
