@@ -5,7 +5,7 @@ import java.util.List;
 
 public class FileManager {
 
-    public String[][] readFile(String filePath) throws IOException {
+    public List<List<String>> readFile(String filePath) throws IOException {
         List<String> stringList = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
@@ -15,7 +15,7 @@ public class FileManager {
             }
         }
 
-        String[][] grammerArray = processRules(stringList.toArray(new String[0]));
+        List<List<String>> grammerArray = processRules(stringList.toArray(new String[0]));
 
         return grammerArray;
     }
@@ -25,8 +25,8 @@ public class FileManager {
     }
 
 
-    public String[][] processRules(String[] lines) {
-        List<String[]> grammerMatriz = new ArrayList<>();
+    public List<List<String>> processRules(String[] lines) {
+        List<List<String>> grammerMatriz = new ArrayList<>();
         for (String line : lines) {
 
             String[] rules = line.split("[->|]");
@@ -39,10 +39,10 @@ public class FileManager {
                 processedRules.add(rule.trim());
             };
 
-            grammerMatriz.add(processedRules.toArray(new String[0]));
+            grammerMatriz.add(processedRules);
         }
 
-        return  grammerMatriz.toArray(new String[0][0]);
+        return  grammerMatriz;
     }
 }
 
