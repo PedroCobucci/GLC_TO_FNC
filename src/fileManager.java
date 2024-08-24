@@ -3,7 +3,8 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileManager {
+
+public class fileManager {
 
     public List<List<String>> readFile(String filePath) throws IOException {
         List<String> stringList = new ArrayList<>();
@@ -20,8 +21,27 @@ public class FileManager {
         return grammerArray;
     }
 
-    public void writeFile(String filePath, String[] rules) throws IOException {
-        // #TODO Implementar o método de escrita
+    public void writeFile(String filePath, List<List<String>> grammerArray) throws IOException {
+        String result = "";
+        for (List<String> grammer : grammerArray) {
+            int index = 0;
+            for (String rule : grammer) {
+                if (index == 0) {
+                   result = result + "" + rule + " -> ";
+                }else{
+                   result = result + "" + rule + " | ";
+                }
+                index++;
+            }
+            result = result.substring(0, result.length() - 2);
+            result = result + "\r\n";
+            
+        }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            writer.write(result);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
