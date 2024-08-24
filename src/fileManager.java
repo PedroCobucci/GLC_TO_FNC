@@ -1,7 +1,9 @@
 package src;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class fileManager {
@@ -18,11 +20,15 @@ public class fileManager {
 
         List<List<String>> grammerArray = processRules(stringList.toArray(new String[0]));
 
+        grammerArray = checkRepeatedState(grammerArray);
+
         return grammerArray;
     }
 
     public void writeFile(String filePath, List<List<String>> grammerArray) throws IOException {
+        //grammerArray = checkRepeatedState(grammerArray);
         String result = "";
+
         for (List<String> grammer : grammerArray) {
             int index = 0;
             for (String rule : grammer) {
@@ -37,6 +43,8 @@ public class fileManager {
             result = result + "\r\n";
             
         }
+
+        System.out.println(result);
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             writer.write(result);
         } catch (IOException e) {
@@ -45,7 +53,32 @@ public class fileManager {
     }
 
 
-    public List<List<String>> processRules(String[] lines) {
+    private List<List<String>> checkRepeatedState(List<List<String>> grammarArray) {
+        Map<String, List<String>> hash = new HashMap<>();
+
+        for (List<String> grammar : grammarArray) {
+            String key = grammar.get(0);
+            List<String> values = grammar.subList(1, grammar.size());
+
+            if (hash.containsKey(key)) {
+                hash.get(key).addAll(values);
+            } else {
+                hash.put(key, new ArrayList<>(values));
+            }
+        }
+
+        List<List<String>> result = new ArrayList<>();
+        for (Map.Entry<String, List<String>> entry : hash.entrySet()) {
+            List<String> combinedList = new ArrayList<>();
+            combinedList.add(entry.getKey());
+            combinedList.addAll(entry.getValue());
+            result.add(combinedList);
+        }
+
+        return result;
+    }
+
+    private List<List<String>> processRules(String[] lines) {
         List<List<String>> grammerMatriz = new ArrayList<>();
         for (String line : lines) {
 

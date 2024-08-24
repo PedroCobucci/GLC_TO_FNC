@@ -20,14 +20,14 @@ public class teste {
        // reach remocaoNaoAlcancaveis = new reach(gramatica);
        // List<List<String>>gramaticafnc = remocaoNaoAlcancaveis.removerNaoAlcancaveis();
 
-        fnc transformaFnc = new fnc();
-        List<List<String>> gramaticafnc = transformaFnc.converterParaFNC(gramatica);
+        //fnc transformaFnc = new fnc();
+        //List<List<String>> gramaticafnc = transformaFnc.converterParaFNC(gramatica);
 
 
 
 
-        for (List<String> regra : gramaticafnc) {
-            System.out.println(regra);
-        }
+        // for (List<String> regra : gramaticafnc) {
+        //     System.out.println(regra);
+        // }
     }
 }
