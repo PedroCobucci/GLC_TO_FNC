@@ -1,0 +1,8 @@
+#!/bin/bash
+javac src/*.java
+
+if [ $? -eq 0 ]; then
+    java src.Main "$@"
+else
+    echo "Erro na compilação dos arquivos Java."
+fi
