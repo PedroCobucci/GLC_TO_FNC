@@ -4,17 +4,14 @@ import java.util.*;
 public class RemoveChain {
 
     public List<List<String>> removeChainRules(List<List<String>> grammar) {
-        // A map to store the chain derivations for each non-terminal
         Map<String, Set<String>> chainMap = new LinkedHashMap<>();
         
-        // Initialize chain sets for each non-terminal
         for (List<String> rule : grammar) {
             String nonTerminal = rule.get(0);
             chainMap.put(nonTerminal, new HashSet<>());
             chainMap.get(nonTerminal).add(nonTerminal);
         }
 
-        // Populate the chain sets
         for (List<String> rule : grammar) {
             String nonTerminal = rule.get(0);
             for (String production : rule.subList(1, rule.size())) {
@@ -24,12 +21,10 @@ public class RemoveChain {
             }
         }
 
-        // Expand chain sets to include indirect derivations
         for (String nonTerminal : chainMap.keySet()) {
             expandChainSet(nonTerminal, chainMap);
         }
 
-        // Create a new grammar without chain rules
         List<List<String>> newGrammar = new ArrayList<>();
         for (List<String> rule : grammar) {
             String nonTerminal = rule.get(0);
@@ -55,7 +50,6 @@ public class RemoveChain {
         return newGrammar;
     }
 
-    // Recursive method to expand the chain set to include all reachable non-terminals
     private void expandChainSet(String nonTerminal, Map<String, Set<String>> chainMap) {
         Set<String> expandedSet = new HashSet<>(chainMap.get(nonTerminal));
         for (String chainNonTerminal : chainMap.get(nonTerminal)) {
@@ -66,25 +60,8 @@ public class RemoveChain {
         chainMap.put(nonTerminal, expandedSet);
     }
 
-    // Helper method to check if a string is a non-terminal (assumed to be a single uppercase letter)
     private boolean isNonTerminal(String symbol) {
         return symbol.length() == 1 && Character.isUpperCase(symbol.charAt(0));
     }
 
-    // public static void main(String[] args) {
-    //     List<List<String>> grammar = Arrays.asList(
-    //         Arrays.asList("S", "AS", "A"),
-    //         Arrays.asList("A", "aA", "bB", "C"),
-    //         Arrays.asList("B", "bB", "b"),
-    //         Arrays.asList("C", "cC", "B")
-    //     );
-
-    //     RemoveChain removeChain = new RemoveChain();
-    //     List<List<String>> newGrammar = removeChain.removeChainRules(grammar);
-
-    //     System.out.println("Grammar without chain rules:");
-    //     for (List<String> rule : newGrammar) {
-    //         System.out.println(rule);
-    //     }
-    // }
 }
