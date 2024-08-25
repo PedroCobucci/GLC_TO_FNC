@@ -12,7 +12,8 @@ public class reach {
 
     public List<List<String>> removerNaoAlcancaveis() {
         List<String> regrasAlcancaveis = new ArrayList<>();
-        regrasAlcancaveis.add("S");
+        String primeiraVariavel = gramatica.get(0).get(0);
+        regrasAlcancaveis.add(primeiraVariavel);
 
         boolean mudou = true;
         while (mudou) {

@@ -22,7 +22,6 @@ public class Main {
             grammerArray = removeChain.removeChainRules(grammerArray);
 
             grammerArray = new term(grammerArray).removerNaoTerminais();
-
             grammerArray = new reach(grammerArray).removerNaoAlcancaveis();
 
             //fnc

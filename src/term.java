@@ -1,6 +1,7 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class term {
@@ -21,10 +22,12 @@ public class term {
 
         // Identificar se geram terminais diretamente ou indiretamente
         boolean mudou = true;
+        List<String> estados = new ArrayList<>();
         while (mudou) {
             mudou = false;
             for (List<String> regra : gramatica) {
                 String variavel = regra.get(0);
+                estados.add(variavel);
                 if (terminaisDiretos.contains(variavel)) continue;
 
                 for (int i = 1; i < regra.size(); i++) {
@@ -52,8 +55,19 @@ public class term {
         List<List<String>> novaGramatica = new ArrayList<>();
         for (List<String> regra : gramatica) {
             String variavel = regra.get(0);
+            List<String> estadosNãoTerminais = new ArrayList<>(estados);
+            estadosNãoTerminais.removeAll(terminaisDiretos);
+
             if (terminaisDiretos.contains(variavel)) {
-                novaGramatica.add(regra);
+                List<String> novasRegras = new ArrayList<>();
+                for (String transicoes : regra) {
+                    boolean containsAny = estadosNãoTerminais.stream().anyMatch(target -> transicoes.indexOf(target) >= 0);
+                    if(!containsAny){
+                        novasRegras.add(transicoes);
+                    }
+                }
+                
+                novaGramatica.add(novasRegras);
             }
         }
 
