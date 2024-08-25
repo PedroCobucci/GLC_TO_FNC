@@ -2,6 +2,7 @@ package src;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -54,7 +55,7 @@ public class fileManager {
 
 
     private List<List<String>> checkRepeatedState(List<List<String>> grammarArray) {
-        Map<String, List<String>> hash = new HashMap<>();
+        Map<String, List<String>> hash = new LinkedHashMap<>();
 
         for (List<String> grammar : grammarArray) {
             String key = grammar.get(0);
