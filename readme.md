@@ -6,9 +6,9 @@ java -version
 
 #### **Compilando o código**
 
-```markdown
+
 Para compilar os arquivos Java, entre na raiz do projeto, e execute o arquivo `javac` abaixo:
-```
+
 ```bash
 javac src/*.java
 ```
