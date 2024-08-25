@@ -12,8 +12,8 @@ public class Main {
         CNFConverter cNFConverter = new CNFConverter();
     
         try {
-            String readFilePath = "glc1.txt";//args[0];
-            String writeFilePath = "glc2.txt";//args[1];
+            String readFilePath = args[0];
+            String writeFilePath = args[1];
             List<List<String>> grammerArray = fileManager.readFile(readFilePath);
             
             
