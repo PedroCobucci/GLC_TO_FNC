@@ -9,6 +9,6 @@ java -version
 Basta rodar no seu terminal, na raiz do projeto, o seguinte comando:
 
 ```bash
- ./glc2fnc glc1.txt glc1 fnc.txt
+ ./glc2fnc glc1.txt glc1_fnc.txt
 ```
 
