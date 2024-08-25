@@ -1,3 +1,4 @@
-S -> aS | A
-A -> aB | .
-B -> b
+S -> aS | bS | C | D
+C -> c | .
+D -> abc
+D -> .
