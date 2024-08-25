@@ -1,0 +1,4 @@
+S' -> A'B | a | A'S | . 
+S -> A'B | a | A'S 
+B -> b 
+A' -> a 

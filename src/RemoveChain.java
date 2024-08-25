@@ -5,7 +5,7 @@ public class RemoveChain {
 
     public List<List<String>> removeChainRules(List<List<String>> grammar) {
         // A map to store the chain derivations for each non-terminal
-        Map<String, Set<String>> chainMap = new HashMap<>();
+        Map<String, Set<String>> chainMap = new LinkedHashMap<>();
         
         // Initialize chain sets for each non-terminal
         for (List<String> rule : grammar) {

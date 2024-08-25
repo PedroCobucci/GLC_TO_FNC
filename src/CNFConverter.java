@@ -1,6 +1,7 @@
 package src;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +11,7 @@ public class CNFConverter {
         // First Step: Transform terminals accompanied by non-terminals or part of larger terminal-only productions
         List<List<String>> firstStepRules = new ArrayList<>();
         List<List<String>> newRules = new ArrayList<>();
-        Map<String, String> terminalToNewState = new HashMap<>();
+        Map<String, String> terminalToNewState = new LinkedHashMap<>();
         
         for (List<String> rule : grammar) {
             List<String> newRule = new ArrayList<>();
@@ -57,7 +58,7 @@ public class CNFConverter {
         // Step 2, Part 1: Create T rules for original productions longer than 2
         int tCounter = 1; // Counter for new T states
         List<List<String>> tRules = new ArrayList<>();
-        Map<String, String> restToTStateMap = new HashMap<>();
+        Map<String, String> restToTStateMap = new LinkedHashMap<>();
 
         for (List<String> rule : firstStepRules) {
             for (int j = 1; j < rule.size(); j++) {
