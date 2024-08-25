@@ -1,4 +1,6 @@
-S' -> S 
-S -> aS | bS | C | D 
-C -> c | . 
-D -> abc | . 
+S' -> a | B'S | A'S | b | c | A'T1 | . 
+S -> a | B'S | A'S | b | c | A'T1 
+B' -> b 
+A' -> a 
+C' -> c 
+T1 -> B'C' 

@@ -1,3 +1,4 @@
+package src;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -56,6 +57,7 @@ public class CNFConverter {
         // Step 2, Part 1: Create T rules for original productions longer than 2
         int tCounter = 1; // Counter for new T states
         List<List<String>> tRules = new ArrayList<>();
+        Map<String, String> restToTStateMap = new HashMap<>();
 
         for (List<String> rule : firstStepRules) {
             for (int j = 1; j < rule.size(); j++) {
@@ -65,16 +67,28 @@ public class CNFConverter {
                 while (countSymbols(production) > 2) {
                     String firstSymbol = extractFirstSymbol(production);  // Extract first symbol
                     String rest = production.substring(firstSymbol.length());  // Rest of the production
-                    String newTState = "T" + tCounter++;
 
-                    // Create the new T rule and add it to tRules
-                    tRules.add(new ArrayList<>(List.of(newTState, rest)));
+                    String newTState;
+                    if (restToTStateMap.containsKey(rest)) {
+                        newTState = restToTStateMap.get(rest);
+                    } else {
+                        newTState = "T" + tCounter++;
+                        restToTStateMap.put(rest, newTState);
+                    }
 
                     // Replace the production in the original rule
                     production = firstSymbol + newTState;
                     rule.set(j, production);
                 }
             }
+        }
+
+        //from hash to array
+        for (Map.Entry<String, String> entry : restToTStateMap.entrySet()) {
+            List<String> combinedList = new ArrayList<>();
+            combinedList.add(entry.getValue());
+            combinedList.add(entry.getKey());
+            tRules.add(combinedList);
         }
 
         // Add the T rules created in the first pass to firstStepRules

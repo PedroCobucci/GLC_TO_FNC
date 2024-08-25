@@ -9,6 +9,7 @@ public class Main {
         RemoveRecursionStartingRule removeRecursionStartingRule = new RemoveRecursionStartingRule();
         RemoveLambda removeLambda = new RemoveLambda();
         RemoveChain removeChain = new RemoveChain();
+        CNFConverter cNFConverter = new CNFConverter();
     
         try {
             String readFilePath = "glc1.txt";//args[0];
@@ -23,7 +24,7 @@ public class Main {
 
             grammerArray = new term(grammerArray).removerNaoTerminais();
             grammerArray = new reach(grammerArray).removerNaoAlcancaveis();
-
+            grammerArray = cNFConverter.transformToCNF(grammerArray);
             //fnc
 
 
