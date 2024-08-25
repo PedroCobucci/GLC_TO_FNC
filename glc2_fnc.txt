@@ -1,5 +1,0 @@
-S' -> S 
-S -> aS | bS | C | D 
-C -> c | . 
-D -> abc 
-D -> . 
