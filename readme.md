@@ -6,9 +6,9 @@ java -version
 
 #### **Como rodar o programa?**
 
-Basta rodar no seu terminal o seguinte comando:
+Basta rodar no seu terminal, na raiz do projeto, o seguinte comando:
 
 ```bash
-glc2fnc
+ ./glc2fnc glc1.txt glc1 fnc.txt
 ```
 
